@@ -267,3 +267,32 @@ hr {
         opacity: 0;
     }
 }
+
+/* ----------------------------- */
+/* 💖 LOGIN Y REGISTRO KAWAII    */
+/* ----------------------------- */
+.login-box {
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 15px;
+    border: 2px solid #ffb3e6;
+    background: #fff8ff;
+    font-size: 16px;
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: #ff7cc4;
+    box-shadow: 0 0 10px #ff9ad5;
+}
+
+.login-box a {
+    color: #d14fa3;
+    font-weight: bold;
+}
