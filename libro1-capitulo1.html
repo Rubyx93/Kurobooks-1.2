@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Capítulo 1</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Capítulo 1: Título del capítulo</h1>
+    </header>
+
+    <article class="contenido">
+        <p>Aquí escribes tu historia directamente.</p>
+        <p>Puedes poner párrafos, diálogos, escenas, lo que quieras.</p>
+    </article>
+
+    <footer>
+        <a href="libro1.html">Volver al libro</a>
+    </footer>
+    <script>
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle("dark-mode");
+
+    // Guardar estado
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("modoOscuro", "true");
+    } else {
+        localStorage.setItem("modoOscuro", "false");
+    }
+}
+
+// Activar automáticamente si estaba guardado
+window.onload = function() {
+    if (localStorage.getItem("modoOscuro") === "true") {
+        document.body.classList.add("dark-mode");
+    }
+};
+</script>
+
+</body>
+</html>
+<button onclick="toggleDarkMode()">🌙 Modo oscuro</button>
+

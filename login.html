@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión ✨</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="login-contenedor avatar-box">
+
+    <img src="https://i.imgur.com/8QfQZ5K.png" class="avatar" alt="Avatar kawaii">
+
+    <h1>💖 Iniciar Sesión 💖</h1>
+    <p class="subtitulo">Bienvenido de nuevo a KuroBooks</p>
+
+    <form onsubmit="return login()">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" placeholder="Tu usuario..." required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="Tu contraseña..." required>
+
+        <button type="submit">✨ Entrar ✨</button>
+    </form>
+
+    <p class="registro-link">
+        ¿No tienes cuenta?
+        <a href="index.html">Regístrate aquí 💜</a>
+    </p>
+</div>
+
+<script>
+function login() {
+    const user = document.getElementById("usuario").value;
+    const pass = document.getElementById("password").value;
+
+    const userGuardado = localStorage.getItem("usuario");
+    const passGuardada = localStorage.getItem("password");
+
+    if (user === userGuardado && pass === passGuardada) {
+        localStorage.setItem("logeado", "true");
+        window.location.href = "inicio.html";
+        return false;
+    } else {
+        alert("Usuario o contraseña incorrectos 💔");
+        return false;
+    }
+}
+</script>
+
+</body>
+</html>
+<div class="login-contenedor avatar-box">
+
+    <img id="avatarLogin" class="avatar" alt="Avatar">
+
+    <h1>💖 Iniciar Sesión 💖</h1>
+    <p class="subtitulo">Bienvenido de nuevo a KuroBooks</p>
+
+    <form onsubmit="return login()">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">✨ Entrar ✨</button>
+    </form>
+
+    <p class="registro-link">
+        ¿No tienes cuenta?
+        <a href="index.html">Regístrate aquí 💜</a>
+    </p>
+</div>
+
+<script>
+// Mostrar avatar guardado
+window.onload = function() {
+    const avatar = localStorage.getItem("avatar");
+    document.getElementById("avatarLogin").src = avatar || "https://i.imgur.com/8QfQZ5K.png";
+};
+
+function login() {
+    const user = document.getElementById("usuario").value;
+    const pass = document.getElementById("password").value;
+
+    const userGuardado = localStorage.getItem("usuario");
+    const passGuardada = localStorage.getItem("password");
+
+    if (user === userGuardado && pass === passGuardada) {
+        localStorage.setItem("logeado", "true");
+        window.location.href = "inicio.html";
+        return false;
+    } else {
+        alert("Usuario o contraseña incorrectos 💔");
+        return false;
+    }
+}
+</script>
+
+
+

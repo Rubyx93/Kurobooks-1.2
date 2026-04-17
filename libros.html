@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Libros ✨</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="contenedor">
+    <h1>📚 Mis Libros</h1>
+    <p class="subtitulo">Tus libros creados aparecerán aquí</p>
+
+    <button onclick="crearLibro()">➕ Crear nuevo libro</button>
+
+    <div id="listaLibros" class="lista-libros"></div>
+</div>
+
+<script>
+// Cargar lista de libros
+function cargarLibros() {
+    const libros = JSON.parse(localStorage.getItem("libros")) || [];
+    const contenedor = document.getElementById("listaLibros");
+    contenedor.innerHTML = "";
+
+    libros.forEach((libro, index) => {
+        contenedor.innerHTML += `
+            <div class="libro-card" onclick="abrirLibro(${index})">
+                <img src="${libro.portada}" alt="Portada">
+                <p>${libro.titulo}</p>
+            </div>
+        `;
+    });
+}
+
+// Crear un nuevo libro
+function crearLibro() {
+    const libros = JSON.parse(localStorage.getItem("libros")) || [];
+
+    const nuevoLibro = {
+        titulo: "Libro " + (libros.length + 1),
+        portada: "https://i.imgur.com/8QfQZ5K.png", // portada kawaii por defecto
+        contenido: ""
+    };
+
+    libros.push(nuevoLibro);
+    localStorage.setItem("libros", JSON.stringify(libros));
+
+    cargarLibros();
+}
+
+// Abrir libro en leer.html
+function abrirLibro(id) {
+    localStorage.setItem("libroActual", id);
+    window.location.href = "leer.html";
+}
+
+cargarLibros();
+</script>
+
+</body>
+</html>

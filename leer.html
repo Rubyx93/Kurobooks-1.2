@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Leer Libro ✨</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="contenedor">
+    <h1 id="tituloLibro">📖 Libro</h1>
+    <img id="portadaLibro" class="portada-libro" src="" alt="Portada">
+
+    <textarea id="textoLibro" rows="15" placeholder="Escribe tu historia aquí..."></textarea>
+
+    <button onclick="guardar()">💖 Guardar</button>
+    <button onclick="volver()">⬅ Volver</button>
+</div>
+
+<script>
+let libros = JSON.parse(localStorage.getItem("libros")) || [];
+let id = localStorage.getItem("libroActual");
+let libro = libros[id];
+
+// Cargar datos del libro
+document.getElementById("tituloLibro").innerText = libro.titulo;
+document.getElementById("portadaLibro").src = libro.portada;
+document.getElementById("textoLibro").value = libro.contenido;
+
+// Guardar cambios
+function guardar() {
+    libro.contenido = document.getElementById("textoLibro").value;
+    libros[id] = libro;
+    localStorage.setItem("libros", JSON.stringify(libros));
+    alert("Guardado ✨");
+}
+
+// Volver a la lista
+function volver() {
+    window.location.href = "libros.html";
+}
+</script>
+
+</body>
+</html>

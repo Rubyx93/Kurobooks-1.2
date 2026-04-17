@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Libro 1 ✨</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="contenedor">
+    <h1>📘 Libro 1 · Kawaii</h1>
+    <img class="portada-libro" src="https://i.imgur.com/8QfQZ5K.png" alt="Portada Libro 1">
+    <p class="subtitulo">Escribe tu narración kawaii aquí</p>
+
+    <textarea id="textoLibro" placeholder="Empieza a escribir tu historia..." rows="15"></textarea>
+
+    <button onclick="guardarTexto()">💖 Guardar Narración</button>
+    <button onclick="volver()">⬅ Volver a Mis Libros</button>
+</div>
+
+<script>
+window.onload = function() {
+    const texto = localStorage.getItem("libro1_texto");
+    if (texto) document.getElementById("textoLibro").value = texto;
+};
+
+function guardarTexto() {
+    const texto = document.getElementById("textoLibro").value;
+    localStorage.setItem("libro1_texto", texto);
+    alert("Narración de Libro 1 guardada ✨");
+}
+
+function volver() {
+    window.location.href = "libros.html";
+}
+</script>
+
+</body>
+</html>

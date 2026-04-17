@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sueños de Lavanda ✨</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<!-- BLOQUEO: si no está logeado, redirige al login -->
+<script>
+    if (localStorage.getItem("logeado") !== "true") {
+        window.location.href = "login.html";
+    }
+</script>
+
+<!-- BARRA DE ESTADO -->
+<div class="barra-estado">
+    <span class="estado-texto">☁️ Sueños de Lavanda — Relatos Pastel ✨</span>
+
+    <div class="estado-botones">
+        <button onclick="toggleDarkMode()">🌙 Modo oscuro</button>
+        <button onclick="logout()">🚪 Cerrar sesión</button>
+    </div>
+</div>
+
+<header>
+    <h1>💜 Sueños de Lavanda 💜</h1>
+    <p>Relatos suaves, mágicos y llenos de ternura pastel.</p>
+</header>
+
+<section class="libros">
+
+    <article class="libro">
+        <h2>🌙 Relato 1: Noche de Nubes</h2>
+        <p>Una historia suave como la lavanda bajo la luna.</p>
+        <a href="#">Leer relato</a>
+    </article>
+
+    <article class="libro">
+        <h2>✨ Relato 2: Estrellas de Azúcar</h2>
+        <p>Un viaje dulce entre constelaciones pastel.</p>
+        <a href="#">Leer relato</a>
+    </article>
+
+    <article class="libro">
+        <h2>☁️ Relato 3: Susurros de Algodón</h2>
+        <p>Un cuento que flota como una nube rosada.</p>
+        <a href="#">Leer relato</a>
+    </article>
+
+</section>
+
+<footer style="text-align:center; margin-top:40px;">
+    <a href="index.html">⬅️ Volver a KuroBooks</a>
+</footer>
+
+<script>
+function logout() {
+    localStorage.setItem("logeado", "false");
+    window.location.href = "login.html";
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+    <script>
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle("dark-mode");
+
+    // Guardar estado
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("modoOscuro", "true");
+    } else {
+        localStorage.setItem("modoOscuro", "false");
+    }
+}
+
+// Activar automáticamente si estaba guardado
+window.onload = function() {
+    if (localStorage.getItem("modoOscuro") === "true") {
+        document.body.classList.add("dark-mode");
+    }
+};
+</script>
+
+
+</body>
+</html>
+<button onclick="toggleDarkMode()">🌙 Modo oscuro</button>
+

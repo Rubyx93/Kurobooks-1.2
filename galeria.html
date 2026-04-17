@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Galería Kawaii 🌈</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<script>
+    if (localStorage.getItem("logeado") !== "true") {
+        window.location.href = "login.html";
+    }
+</script>
+
+<div class="barra-estado">
+    <span class="estado-texto">🌈 Galería de Imágenes Kawaii ✨</span>
+
+    <div class="estado-botones">
+        <button onclick="toggleDarkMode()">🌙 Modo oscuro</button>
+        <button onclick="logout()">🚪 Cerrar sesión</button>
+    </div>
+</div>
+
+<header>
+    <h1>🌸 Galería de Imágenes 🌸</h1>
+    <p>Un espacio lleno de magia pastel, nubes y estrellitas.</p>
+    <div class="subir-imagen">
+    <input type="file" id="inputImagen" accept="image/*">
+    <button onclick="subirImagen()">💖 Subir imagen</button>
+</div>
+
+</header>
+
+<section class="galeria">
+    <img src="img1.png" alt="Imagen kawaii">
+    <img src="img2.png" alt="Imagen kawaii">
+    <img src="img3.png" alt="Imagen kawaii">
+</section>
+
+<footer style="text-align:center; margin-top:40px;">
+    <a href="index.html">⬅️ Volver a KuroBooks</a>
+</footer>
+
+<script>
+function logout() {
+    localStorage.setItem("logeado", "false");
+    window.location.href = "login.html";
+}
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+<button onclick="toggleDarkMode()">🌙 Modo oscuro</button>
+<script>
+function subirImagen() {
+    const input = document.getElementById("inputImagen");
+    const archivo = input.files[0];
+
+    if (!archivo) {
+        alert("Selecciona una imagen primero 💖");
+        return;
+    }
+
+    const lector = new FileReader();
+
+    lector.onload = function(e) {
+        let imagenes = JSON.parse(localStorage.getItem("galeria")) || [];
+        imagenes.push(e.target.result);
+        localStorage.setItem("galeria", JSON.stringify(imagenes));
+        mostrarImagenes();
+    };
+
+    lector.readAsDataURL(archivo);
+}
+
+function mostrarImagenes() {
+    const contenedor = document.querySelector(".galeria");
+    contenedor.innerHTML = "";
+
+    let imagenes = JSON.parse(localStorage.getItem("galeria")) || [];
+
+    imagenes.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        contenedor.appendChild(img);
+    });
+}
+
+mostrarImagenes();
+</script>
+<script>
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle("dark-mode");
+
+    // Guardar estado
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("modoOscuro", "true");
+    } else {
+        localStorage.setItem("modoOscuro", "false");
+    }
+}
+
+// Activar automáticamente si estaba guardado
+window.onload = function() {
+    if (localStorage.getItem("modoOscuro") === "true") {
+        document.body.classList.add("dark-mode");
+    }
+};
+</script>
+<script>
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle("dark-mode");
+
+    // Guardar estado
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("modoOscuro", "true");
+    } else {
+        localStorage.setItem("modoOscuro", "false");
+    }
+}
+
+// Activar automáticamente si estaba guardado
+window.onload = function() {
+    if (localStorage.getItem("modoOscuro") === "true") {
+        document.body.classList.add("dark-mode");
+    }
+};
+</script>
+
+
+</body>
+</html>

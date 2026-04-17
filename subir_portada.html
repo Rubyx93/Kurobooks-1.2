@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Cuenta ✨</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="registro-contenedor portada-box">
+
+    <!-- 🌸 PORTADA NUEVA AQUÍ -->
+    <img src="https://i.imgur.com/0y7YxqE.png" class="portada-registro" alt="Portada kawaii">
+
+    <h1>🌟 Crear Cuenta 🌟</h1>
+    <p class="subtitulo">Bienvenido a KuroBooks, tu mundo mágico</p>
+
+    <form onsubmit="return registrar()" enctype="multipart/form-data">
+
+        <label for="usuario">Nombre de usuario</label>
+        <input type="text" id="usuario" required>
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" required>
+
+        <label for="password2">Confirmar contraseña</label>
+        <input type="password" id="password2" required>
+
+        <label for="avatar">Sube tu avatar</label>
+        <input type="file" id="avatar" accept="image/*">
+
+        <button type="submit">💖 Registrarse 💖</button>
+    </form>
+
+    <p class="login-link">
+        ¿Ya tienes cuenta?
+        <a href="login.html">Inicia sesión aquí ✨</a>
+    </p>
+</div>
+
+<script>
+function registrar() {
+    const user = document.getElementById("usuario").value;
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+    const pass2 = document.getElementById("password2").value;
+    const avatarFile = document.getElementById("avatar").files[0];
+
+    if (pass !== pass2) {
+        alert("Las contraseñas no coinciden 💔");
+        return false;
+    }
+
+    localStorage.setItem("usuario", user);
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", pass);
+
+    if (avatarFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            localStorage.setItem("avatar", e.target.result);
+            window.location.href = "login.html";
+        };
+        reader.readAsDataURL(avatarFile);
+    } else {
+        localStorage.setItem("avatar", "https://i.imgur.com/8QfQZ5K.png");
+        window.location.href = "login.html";
+    }
+
+    return false;
+}
+</script>
+
+</body>
+</html>
+
