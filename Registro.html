@@ -2,39 +2,48 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Iniciar Sesión ✨</title>
+    <title>Registro ✨</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
 <div class="contenedor login-box">
-    <h1>🔐 Iniciar Sesión</h1>
+    <h1>💖 Crear Cuenta</h1>
 
-    <input id="loginUser" type="text" placeholder="Usuario">
-    <input id="loginPass" type="password" placeholder="Contraseña">
+    <input id="regUser" type="text" placeholder="Usuario">
+    <input id="regPass" type="password" placeholder="Contraseña">
+    <input id="regPass2" type="password" placeholder="Repetir contraseña">
 
-    <button onclick="login()">Entrar</button>
+    <button onclick="registrar()">Registrarme</button>
 
-    <p>¿No tienes cuenta?  
-        <a href="registro.html">💖 Regístrate aquí</a>
+    <p>¿Ya tienes cuenta?  
+        <a href="login.html">🔐 Inicia sesión</a>
     </p>
 </div>
 
 <script>
-function login() {
-    let user = document.getElementById("loginUser").value;
-    let pass = document.getElementById("loginPass").value;
+function registrar() {
+    let user = document.getElementById("regUser").value;
+    let pass = document.getElementById("regPass").value;
+    let pass2 = document.getElementById("regPass2").value;
+
+    if (pass !== pass2) {
+        alert("Las contraseñas no coinciden");
+        return;
+    }
 
     let datos = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    let existe = datos.find(u => u.user === user && u.pass === pass);
-
-    if (existe) {
-        localStorage.setItem("usuarioActual", user);
-        window.location.href = "index.html";
-    } else {
-        alert("Usuario o contraseña incorrectos");
+    if (datos.find(u => u.user === user)) {
+        alert("Ese usuario ya existe");
+        return;
     }
+
+    datos.push({ user, pass });
+    localStorage.setItem("usuarios", JSON.stringify(datos));
+
+    alert("Cuenta creada con éxito 💖");
+    window.location.href = "login.html";
 }
 </script>
 

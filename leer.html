@@ -7,63 +7,106 @@
 </head>
 <body>
 
-<!-- Barra kawaii -->
+<div class="contenedor">
+    <h1 id="tituloLibro">📖 Libro</h1>
+    <img id="portadaLibro" class="portada-libro" src="" alt="Portada">
+
+    <textarea id="textoLibro" rows="15" placeholder="Escribe tu historia aquí..."></textarea>
+
+    <button onclick="guardar()">💖 Guardar</button>
+    <button onclick="volver()">⬅ Volver</button>
+</div>
+
+<script>
+let libros = JSON.parse(localStorage.getItem("libros")) || [];
+let id = localStorage.getItem("libroActual");
+let libro = libros[id];
+
+// Cargar datos del libro
+document.getElementById("tituloLibro").innerText = libro.titulo;
+document.getElementById("portadaLibro").src = libro.portada;
+document.getElementById("textoLibro").value = libro.contenido;
+
+// Guardar cambios
+function guardar() {
+    libro.contenido = document.getElementById("textoLibro").value;
+    libros[id] = libro;
+    localStorage.setItem("libros", JSON.stringify(libros));
+    alert("Guardado ✨");
+}function mostrarImagenes() {
+    let imagenes = JSON.parse(localStorage.getItem("imagenes")) || [];
+    let contenedor = document.getElementById("galeria");
+    contenedor.innerHTML = "";
+
+    imagenes.forEach((img, index) => {
+        contenedor.innerHTML += `
+            <div class="imagen-card">
+                <img src="${img}" class="imagen-subida">
+                <button class="btn-borrar" onclick="eliminarImagen(${index})">🗑 Eliminar</button>
+            </div>
+        `;
+    });
+}
+function eliminarImagen(index) {
+    let imagenes = JSON.parse(localStorage.getItem("imagenes")) || [];
+    imagenes.splice(index, 1); // elimina la imagen
+    localStorage.setItem("imagenes", JSON.stringify(imagenes));
+    mostrarImagenes(); // refresca la galería
+}
+
+
+// Volver a la lista
+function volver() {
+    window.location.href = "libros.html";
+}
+</script>
+
+</body>
 <div class="barra-kawaii">
     <div class="logo-kawaii">🌸 KuroBooks</div>
 
     <div class="menu-kawaii">
         <a href="index.html">🏠 Inicio</a>
         <a href="libros.html">📚 Mis Libros</a>
+        <a href="#" onclick="crearLibroDesdeBarra()">➕ Nuevo Libro</a>
     </div>
 </div>
 
-<div class="contenedor">
+</html>
+<div class="barra-kawaii">
+    <div class="logo-kawaii">🌸 KuroBooks</div>
 
-    <!-- Título editable -->
-    <h1>📖 <input id="tituloLibro" class="input-titulo"></h1>
-
-    <!-- Portada -->
-    <img id="portadaLibro" class="portada-libro" src="" alt="Portada">
-
-    <hr>
-
-    <!-- Lista de capítulos -->
-    <h2>📑 Capítulos</h2>
-    <div id="listaCapitulos" class="lista-capitulos"></div>
-
-    <button onclick="nuevoCapitulo()">➕ Nuevo capítulo</button>
-
-    <hr>
-
-    <!-- Editor -->
-    <h2 id="tituloCapitulo">Capítulo</h2>
-    <textarea id="textoCapitulo" rows="12" placeholder="Escribe aquí..."></textarea>
-
-    <button onclick="guardarTodo()">💖 Guardar cambios</button>
-    <button onclick="volver()">⬅ Volver</button>
-
+    <div class="menu-kawaii" id="menuKawaii">
+        <!-- Aquí se insertan los botones dinámicamente -->
+    </div>
 </div>
-
 <script>
-let libros = JSON.parse(localStorage.getItem("libros")) || [];
-let idLibro = localStorage.getItem("libroActual");
-let libro = libros[idLibro];
+function actualizarMenu() {
+    let usuario = localStorage.getItem("usuarioActual");
+    let menu = document.getElementById("menuKawaii");
 
-// Cargar datos del libro
-document.getElementById("tituloLibro").value = libro.titulo;
-document.getElementById("portadaLibro").src = libro.portada;
+    if (!menu) return;
 
-// Capítulo actual
-let capActual = 0;
+    if (usuario) {
+        menu.innerHTML = `
+            <a href="index.html">🏠 Inicio</a>
+            <a href="libros.html">📚 Mis Libros</a>
+            <span class="usuario-tag">💖 ${usuario}</span>
+            <a href="#" onclick="logout()">🚪 Cerrar sesión</a>
+        `;
+    } else {
+        menu.innerHTML = `
+            <a href="index.html">🏠 Inicio</a>
+            <a href="login.html">🔐 Login</a>
+            <a href="registro.html">💖 Registro</a>
+        `;
+    }
+}
 
-// Mostrar lista de capítulos
-function cargarCapitulos() {
-    let cont = document.getElementById("listaCapitulos");
-    cont.innerHTML = "";
+function logout() {
+    localStorage.removeItem("usuarioActual");
+    window.location.href = "login.html";
+}
 
-    libro.capitulos.forEach((cap, index) => {
-        cont.innerHTML += `
-            <div class="cap-card">
-                <span onclick="abrirCapitulo(${index})">📘 ${cap.titulo}</span>
-                <button onclick="renombrarCapitulo(${index})">✏️</button>
-                <button onclick="eliminarCapitulo(${index})">
+actualizarMenu();
+</script>

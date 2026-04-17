@@ -39,3 +39,99 @@ function cargarLibros() {
                 <p><b>${libro.titulo}</b></p>
 
                 <button onclick="abrirLibro(${index})">📖 Abrir</button>
+                <button onclick="editarTitulo(${index})">✏️ Título</button>
+                <button onclick="eliminarLibro(${index})">🗑 Eliminar</button>
+            </div>
+        `;
+    });
+}
+
+// Crear un nuevo libro
+function crearLibro() {
+    let libros = JSON.parse(localStorage.getItem("libros")) || [];
+
+    const nuevoLibro = {
+        titulo: "Libro " + (libros.length + 1),
+        portada: "https://i.imgur.com/8QfQZ5K.png",
+        capitulos: [
+            { titulo: "Capítulo 1", contenido: "" }
+        ]
+    };
+
+    libros.push(nuevoLibro);
+    localStorage.setItem("libros", JSON.stringify(libros));
+
+    cargarLibros();
+}
+
+// Abrir libro en leer.html
+function abrirLibro(id) {
+    localStorage.setItem("libroActual", id);
+    window.location.href = "leer.html";
+}
+
+// Editar título del libro
+function editarTitulo(id) {
+    let libros = JSON.parse(localStorage.getItem("libros")) || [];
+    let nuevoTitulo = prompt("Nuevo título del libro:", libros[id].titulo);
+
+    if (nuevoTitulo !== null && nuevoTitulo.trim() !== "") {
+        libros[id].titulo = nuevoTitulo;
+        localStorage.setItem("libros", JSON.stringify(libros));
+        cargarLibros();
+    }
+}
+
+// Eliminar libro
+function eliminarLibro(id) {
+    let libros = JSON.parse(localStorage.getItem("libros")) || [];
+
+    if (confirm("¿Seguro que quieres eliminar este libro?")) {
+        libros.splice(id, 1);
+        localStorage.setItem("libros", JSON.stringify(libros));
+        cargarLibros();
+    }
+}
+
+cargarLibros();
+</script>
+
+</body>
+</html>
+<div class="barra-kawaii">
+    <div class="logo-kawaii">🌸 KuroBooks</div>
+
+    <div class="menu-kawaii" id="menuKawaii">
+        <!-- Aquí se insertan los botones dinámicamente -->
+    </div>
+</div>
+<script>
+function actualizarMenu() {
+    let usuario = localStorage.getItem("usuarioActual");
+    let menu = document.getElementById("menuKawaii");
+
+    if (!menu) return;
+
+    if (usuario) {
+        menu.innerHTML = `
+            <a href="index.html">🏠 Inicio</a>
+            <a href="libros.html">📚 Mis Libros</a>
+            <span class="usuario-tag">💖 ${usuario}</span>
+            <a href="#" onclick="logout()">🚪 Cerrar sesión</a>
+        `;
+    } else {
+        menu.innerHTML = `
+            <a href="index.html">🏠 Inicio</a>
+            <a href="login.html">🔐 Login</a>
+            <a href="registro.html">💖 Registro</a>
+        `;
+    }
+}
+
+function logout() {
+    localStorage.removeItem("usuarioActual");
+    window.location.href = "login.html";
+}
+
+actualizarMenu();
+</script>
