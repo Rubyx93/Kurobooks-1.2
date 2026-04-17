@@ -1,144 +1,80 @@
-/* ---------------------------------------------------
-   🌸 KuroBooks — Estilo Pastel Kawaii Completo
-   --------------------------------------------------- */
-
-/* Fuente kawaii */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&display=swap');
+/* ----------------------------- */
+/* 🌸 FUENTES Y BASE GENERAL     */
+/* ----------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Fredoka', sans-serif;
-    background: linear-gradient(135deg, #ffe6f7, #e8d9ff);
-    color: #5a4a66;
-    transition: 0.3s ease;
+    background: linear-gradient(180deg, #ffe6fa, #fff0ff, #ffe6f7);
+    background-size: 400% 400%;
+    animation: fondoAnimado 12s ease infinite;
+    font-family: "Poppins", sans-serif;
+    color: #b84fa8;
+    cursor: url("https://cur.cursors-4u.net/cursors/cur-11/cur1036.cur"), auto;
 }
 
-/* ---------------------------------------------------
-   🌟 CONTENEDORES GENERALES
---------------------------------------------------- */
-
-.contenedor,
-.login-contenedor,
-.registro-contenedor,
-.welcome-contenedor {
-    background: rgba(255, 255, 255, 0.75);
-    border-radius: 20px;
-    padding: 25px;
-    max-width: 450px;
-    margin: 60px auto;
-    border: 3px solid #ffb3e6;
-    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
-    text-align: center;
+@keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* ---------------------------------------------------
-   🌟 TITULOS
---------------------------------------------------- */
-
-h1, h2, h3 {
-    color: #c77fd6;
-    text-shadow: 0 0 8px rgba(200, 150, 255, 0.4);
+/* Contenedor general */
+.contenedor {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffffcc;
+    padding: 25px 35px;
+    border-radius: 25px;
+    box-shadow: 0 0 25px rgba(255, 150, 200, 0.4);
+    backdrop-filter: blur(6px);
 }
 
-.subtitulo {
-    color: #a86bd6;
-    margin-bottom: 20px;
-}
-
-/* ---------------------------------------------------
-   🌟 INPUTS
---------------------------------------------------- */
-
-input, textarea, select {
-    width: 90%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 12px;
-    border: 2px solid #d8a7ff;
-    background: #fff;
-    font-size: 15px;
-}
-
-/* ---------------------------------------------------
-   🌟 BOTONES
---------------------------------------------------- */
-
-button, .btn {
+/* ----------------------------- */
+/* 🌸 NAVBAR KAWAII              */
+/* ----------------------------- */
+.barra-kawaii {
     width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, #ffb3e6, #ff99cc);
-    border: none;
-    border-radius: 12px;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(255, 153, 204, 0.4);
-    transition: 0.3s;
+    background: #ffd6f6;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(255, 150, 200, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 3px solid #ffb3e6;
 }
 
-button:hover, .btn:hover {
-    transform: scale(1.05);
-    background: linear-gradient(135deg, #ff99d6, #ff7fcf);
-}
-
-.btn-secundario {
-    background: linear-gradient(135deg, #d8a7ff, #c77fd6);
-}
-
-.btn-terciario {
-    background: linear-gradient(135deg, #c7a7ff, #a77fff);
-}
-
-/* ---------------------------------------------------
-   🌟 ENLACES
---------------------------------------------------- */
-
-a {
-    color: #ff7fcf;
+.logo-kawaii {
+    font-size: 22px;
     font-weight: bold;
+    color: #d14fa3;
+    text-shadow: 0 0 5px white;
+}
+
+.menu-kawaii a {
+    margin-left: 20px;
     text-decoration: none;
+    font-weight: 600;
+    color: #b84fa8;
+    background: #ffe6fa;
+    padding: 6px 12px;
+    border-radius: 12px;
+    transition: 0.2s;
 }
 
-a:hover {
-    text-shadow: 0 0 6px #ffb3e6;
+.menu-kawaii a:hover {
+    background: #ffb3e6;
+    color: white;
+    box-shadow: 0 0 10px #ff9ad5;
 }
 
-/* ---------------------------------------------------
-   🌟 AVATARES
---------------------------------------------------- */
-
-.avatar-box {
-    position: relative;
-    padding-top: 80px;
-}
-
-.avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #ffb3e6;
-    box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
-    position: absolute;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-}
-
-.avatar-index {
-    width: 140px;
-    margin: 20px auto;
-    display: block;
-    border-radius: 50%;
-    border: 4px solid #ffb3e6;
-    box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
-}
-
-/* ---------------------------------------------------
-   🌟 TARJETAS DE LIBROS
---------------------------------------------------- */
-
+/* ----------------------------- */
+/* 🌸 TARJETAS DE LIBROS         */
+/* ----------------------------- */
 .lista-libros {
     display: flex;
     flex-wrap: wrap;
@@ -147,113 +83,187 @@ a:hover {
 }
 
 .libro-card {
-    width: 150px;
-    background: rgba(255, 240, 250, 0.8);
-    border: 3px solid #ffb3e6;
-    border-radius: 15px;
-    padding: 10px;
+    width: 170px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 15px;
     text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(255, 150, 200, 0.4);
+    transition: 0.2s;
 }
 
 .libro-card img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 15px;
+    border: 3px solid #ffb3e6;
 }
 
 .libro-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 120, 180, 0.6);
 }
 
-/* ---------------------------------------------------
-   🌟 PANTALLA DE BIENVENIDA
---------------------------------------------------- */
-
-.titulo-kawaii {
-    font-size: 32px;
-    color: #c77fd6;
-    text-shadow: 0 0 10px rgba(200, 150, 255, 0.5);
+.libro-card button {
+    margin-top: 8px;
+    width: 100%;
 }
 
-.botones-welcome {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+/* ----------------------------- */
+/* 🌸 BOTONES KAWAII             */
+/* ----------------------------- */
+button, .btn {
+    background: #ff9ad5;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+    display: inline-block;
 }
 
-/* ---------------------------------------------------
-   🌟 MODO OSCURO
---------------------------------------------------- */
-
-.dark-mode {
-    background: linear-gradient(135deg, #2a2233, #1a1620);
-    color: #f0d9ff;
+button:hover, .btn:hover {
+    background: #ff7cc4;
+    box-shadow: 0 0 12px #ff9ad5;
 }
 
-.dark-mode .contenedor,
-.dark-mode .login-contenedor,
-.dark-mode .registro-contenedor,
-.dark-mode .welcome-contenedor {
-    background: rgba(40, 30, 55, 0.7);
-    border-color: #a86bd6;
-    box-shadow: 0 10px 25px rgba(80, 50, 120, 0.5);
+/* Botón secundario */
+.btn-secundario {
+    background: #cfa7ff;
 }
 
-.dark-mode input {
-    background: #3a2a4d;
-    color: #f0d9ff;
-    border-color: #b46cff;
+.btn-secundario:hover {
+    background: #b88aff;
 }
 
-.dark-mode button {
-    background: linear-gradient(135deg, #b46cff, #8f4fd6);
-}
-
-.dark-mode a {
-    color: #d8a7ff;
-}
-.portada-box {
-    position: relative;
-    padding-top: 180px;
-}
-
-.portada-registro {
-    width: 260px;
+/* ----------------------------- */
+/* 🌸 PORTADA DEL LIBRO          */
+/* ----------------------------- */
+.portada-libro {
+    width: 200px;
     border-radius: 20px;
     border: 4px solid #ffb3e6;
-    box-shadow: 0 0 20px rgba(255, 182, 193, 0.6);
-    position: absolute;
-    top: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.imagen-card {
-    position: relative;
-    display: inline-block;
-    margin: 10px;
+    box-shadow: 0 0 20px rgba(255, 150, 200, 0.5);
+    margin-bottom: 15px;
 }
 
-.imagen-subida {
-    width: 150px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px pink;
-}
-
-.btn-borrar {
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
-    background: #ff6b9a;
+/* ----------------------------- */
+/* 🌸 TÍTULO EDITABLE            */
+/* ----------------------------- */
+.input-titulo {
+    font-size: 22px;
+    font-weight: bold;
     border: none;
-    padding: 5px 10px;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
+    background: transparent;
+    color: #b84fa8;
+    outline: none;
+    text-align: center;
 }
 
-.btn-borrar:hover {
-    background: #ff3d7a;
+/* ----------------------------- */
+/* 🌸 LISTA DE CAPÍTULOS         */
+/* ----------------------------- */
+.lista-capitulos {
+    margin-bottom: 20px;
+}
+
+.cap-card {
+    background: #ffe6fa;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(255, 150, 200, 0.3);
+}
+
+.cap-card span {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cap-card span:hover {
+    color: #ff4fa3;
+}
+
+/* ----------------------------- */
+/* 🌸 EDITOR DE TEXTO            */
+/* ----------------------------- */
+textarea {
+    width: 100%;
+    border-radius: 15px;
+    border: 2px solid #ffb3e6;
+    padding: 12px;
+    resize: vertical;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    background: #fff8ff;
+    box-shadow: inset 0 0 10px rgba(255, 150, 200, 0.2);
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #ff7cc4;
+    box-shadow: 0 0 10px #ff9ad5;
+}
+
+/* ----------------------------- */
+/* 🌸 HR KAWAII                  */
+/* ----------------------------- */
+hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(90deg, #ffb3e6, #ffc8f2, #ffb3e6);
+    border-radius: 10px;
+    margin: 25px 0;
+}
+
+/* ----------------------------- */
+/* 🌙 MODO OSCURO PASTEL         */
+/* ----------------------------- */
+.dark {
+    background: linear-gradient(180deg, #2b1f2f, #3a2940, #2b1f2f);
+    color: #ffd6f6;
+}
+
+.dark .contenedor {
+    background: #3a2940cc;
+    box-shadow: 0 0 25px rgba(255, 200, 255, 0.3);
+}
+
+.dark .barra-kawaii {
+    background: #4a3555;
+    border-bottom-color: #d18ad8;
+}
+
+.dark button, .dark .btn {
+    background: #d18ad8;
+}
+
+.dark textarea {
+    background: #4a3555;
+    color: #ffd6f6;
+    border-color: #d18ad8;
+}
+
+/* ----------------------------- */
+/* 🌟 ESTRELLITAS CAYENDO        */
+/* ----------------------------- */
+.estrella {
+    position: fixed;
+    top: -20px;
+    font-size: 18px;
+    color: #ffb3e6;
+    animation: caer 3s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes caer {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
