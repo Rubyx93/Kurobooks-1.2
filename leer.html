@@ -33,7 +33,27 @@ function guardar() {
     libros[id] = libro;
     localStorage.setItem("libros", JSON.stringify(libros));
     alert("Guardado ✨");
+}function mostrarImagenes() {
+    let imagenes = JSON.parse(localStorage.getItem("imagenes")) || [];
+    let contenedor = document.getElementById("galeria");
+    contenedor.innerHTML = "";
+
+    imagenes.forEach((img, index) => {
+        contenedor.innerHTML += `
+            <div class="imagen-card">
+                <img src="${img}" class="imagen-subida">
+                <button class="btn-borrar" onclick="eliminarImagen(${index})">🗑 Eliminar</button>
+            </div>
+        `;
+    });
 }
+function eliminarImagen(index) {
+    let imagenes = JSON.parse(localStorage.getItem("imagenes")) || [];
+    imagenes.splice(index, 1); // elimina la imagen
+    localStorage.setItem("imagenes", JSON.stringify(imagenes));
+    mostrarImagenes(); // refresca la galería
+}
+
 
 // Volver a la lista
 function volver() {
@@ -42,4 +62,14 @@ function volver() {
 </script>
 
 </body>
+<div class="barra-kawaii">
+    <div class="logo-kawaii">🌸 KuroBooks</div>
+
+    <div class="menu-kawaii">
+        <a href="index.html">🏠 Inicio</a>
+        <a href="libros.html">📚 Mis Libros</a>
+        <a href="#" onclick="crearLibroDesdeBarra()">➕ Nuevo Libro</a>
+    </div>
+</div>
+
 </html>

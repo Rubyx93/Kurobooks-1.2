@@ -230,3 +230,30 @@ a:hover {
     left: 50%;
     transform: translateX(-50%);
 }
+.imagen-card {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.imagen-subida {
+    width: 150px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px pink;
+}
+
+.btn-borrar {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background: #ff6b9a;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-borrar:hover {
+    background: #ff3d7a;
+}

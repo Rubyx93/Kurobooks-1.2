@@ -2,55 +2,55 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Subir Portada ✨</title>
+    <title>KuroBooks ✨</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-<div class="registro-contenedor">
-    <h1>📚 Subir Portada del Libro</h1>
-    <p class="subtitulo">Añade una portada para tu nuevo libro</p>
+<div class="welcome-contenedor">
+    <h1 class="titulo-kawaii">📚✨ Bienvenido a KuroBooks ✨📚</h1>
+    <p class="subtitulo">Tu rincón mágico para crear historias kawaii</p>
 
-    <form onsubmit="return guardarPortada()" enctype="multipart/form-data">
-        <label>Título del libro</label>
-        <input type="text" id="titulo" required>
-
-        <label>Portada del libro</label>
-        <input type="file" id="portada" accept="image/*" required>
-
-        <button type="submit">✨ Guardar Portada ✨</button>
-    </form>
-
-    <p class="login-link">
-        Ver mis libros:
-        <a href="libros.html">📚 Ir a la biblioteca</a>
-    </p>
+    <div class="botones-welcome">
+        <a href="libros.html" class="btn">📖 Ver mis libros</a>
+        <button class="btn btn-secundario" onclick="crearPrimerLibro()">➕ Crear mi primer libro</button>
+    </div>
 </div>
 
 <script>
-function guardarPortada() {
-    const titulo = document.getElementById("titulo").value;
-    const archivo = document.getElementById("portada").files[0];
+// Crear el primer libro automáticamente si no existe ninguno
+function crearPrimerLibro() {
+    let libros = JSON.parse(localStorage.getItem("libros")) || [];
 
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        let libros = JSON.parse(localStorage.getItem("libros")) || [];
+    if (libros.length === 0) {
+        const nuevoLibro = {
+            titulo: "Libro 1",
+            portada: "https://i.imgur.com/8QfQZ5K.png",
+            contenido: ""
+        };
 
-        libros.push({
-            titulo: titulo,
-            portada: e.target.result
-        });
-
+        libros.push(nuevoLibro);
         localStorage.setItem("libros", JSON.stringify(libros));
+    }
 
-        alert("Portada guardada 💖");
-        window.location.href = "libros.html";
-    };
-
-    reader.readAsDataURL(archivo);
-    return false;
+    window.location.href = "libros.html";
 }
 </script>
 
 </body>
+<div class="barra-kawaii"> ... </div>
+
+<div class="barra-kawaii">
+    <div class="logo-kawaii">🌸 KuroBooks</div>
+
+    <div class="menu-kawaii">
+        <a href="index.html">🏠 Inicio</a>
+        <a href="libros.html">📚 Mis Libros</a>
+        <a href="#" onclick="crearLibroDesdeBarra()">➕ Nuevo Libro</a>
+    </div>
+</div>
+
 </html>
+<input type="file" accept="image/*" onchange="subirImagen(event)">
+
+<div id="galeria" class="galeria"></div>
